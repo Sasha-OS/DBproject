@@ -1,0 +1,110 @@
+-- Database: BookShop
+
+-- DROP DATABASE "BookShop";
+
+CREATE DATABASE "BookShop"
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'C'
+    LC_CTYPE = 'C'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+
+CREATE TABLE IF NOT EXISTS public."Customer"
+(
+	CustomerId serial PRIMARY KEY,
+	CustomerName VARCHAR(255) NOT NULL,
+	CustomerSurname VARCHAR(255) NOT NULL,
+	CustomerPhone VARCHAR(255) NOT NULL,
+	CustomerAddress VARCHAR(255) NOT NULL
+);
+
+
+
+ALTER TABLE public."Customer"
+    OWNER to postgres;
+	
+
+	
+CREATE TABLE IF NOT EXISTS public."Order"
+(
+	OrderId	serial PRIMARY KEY,
+	OrderDate DATE DEFAULT CURRENT_TIMESTAMP,
+	TotalAmount INTEGER NOT NULL,
+	CustomerId INTEGER NOT NULL,
+	FOREIGN KEY(CustomerId) REFERENCES public."Customer"(CustomerId)
+);
+
+ALTER TABLE public."Order"
+    OWNER to postgres;
+
+	
+CREATE TABLE IF NOT EXISTS public."Supplier"
+(
+	SupplierId serial PRIMARY KEY,
+	Phone INTEGER NOT NULL,
+	TaxNumber INTEGER NOT NULL,
+	PrimaryBankAccount INTEGER NOT NULL
+);
+
+
+
+ALTER TABLE public."Supplier"
+    OWNER to postgres;
+	
+	
+CREATE TABLE IF NOT EXISTS public."Author"
+(
+	AuthorId serial PRIMARY KEY,
+	AuthorName VARCHAR(255),
+	AuthorSurname VARCHAR(255),
+	PlaceOfBirth VARCHAR(255),
+	DateOfBirth DATE
+);
+
+
+
+ALTER TABLE public."Author"
+    OWNER to postgres;
+
+CREATE TABLE IF NOT EXISTS public."Books"
+(
+	BookId serial PRIMARY KEY,
+	SupplierId INTEGER ,
+	AuthorId INTEGER,
+	UnitPrice DECIMAL(12,2),
+	ISBN INTEGER NOT NULL,
+	Circulation INTEGER,
+	YearOfPublication DATE,
+	FOREIGN KEY(SupplierId) REFERENCES public."Supplier"(SupplierId),
+	FOREIGN KEY(AuthorId) REFERENCES public."Author"(AuthorId)
+);
+
+
+
+
+ALTER TABLE public."Books"
+    OWNER to postgres;
+
+
+
+CREATE TABLE IF NOT EXISTS public."OrderItem"
+(
+	OrderItemId serial primary key,
+	OrderId	INTEGER,
+	BookId INTEGER,
+	UnitPrice DECIMAL(12,2),
+	Quantity INTEGER NOT NULL,
+	FOREIGN KEY(OrderId) REFERENCES public."Order"(OrderId),
+	FOREIGN KEY(BookId) REFERENCES public."Books"(BookId)
+);
+
+
+
+ALTER TABLE public."OrderItem"
+    OWNER to postgres;
+	
+
+
+
