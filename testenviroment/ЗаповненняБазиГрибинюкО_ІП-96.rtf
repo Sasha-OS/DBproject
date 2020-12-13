@@ -53,10 +53,8 @@ insert into public."Order" values \
 (12, '03-06-2020', 100, (select customerid from public."Customer" where customerid=\'915\'92));\
 \
 insert into public."Books" values \
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
-\cf0 (1,(select supplierid from public."Supplier" where supplierid = \'911\'92), (select authorid from public."Author" where authorid =\'911\'92), 300, 758395, 100, '01-02-1980'),\
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
-\cf0 (4,(select supplierid from public."Supplier" where supplierid = '2'), (select authorid from public."Author" where authorid ='7'), 300, 758395, 100, '01-02-1980'),\
+(1,(select supplierid from public."Supplier" where supplierid = \'911\'92), (select authorid from public."Author" where authorid =\'911\'92), 300, 758395, 100, '01-02-1980'),\
+(4,(select supplierid from public."Supplier" where supplierid = '2'), (select authorid from public."Author" where authorid ='7'), 300, 758395, 100, '01-02-1980'),\
 (5,(select supplierid from public."Supplier" where supplierid = '1'), (select authorid from public."Author" where authorid ='2'), 300, 758395, 100, '01-02-1980'),\
 (6,(select supplierid from public."Supplier" where supplierid = '4'), (select authorid from public."Author" where authorid ='3'), 300, 758395, 100, '01-02-1980'),\
 (7,(select supplierid from public."Supplier" where supplierid = '5'), (select authorid from public."Author" where authorid ='4'), 300, 758395, 100, '01-02-1980'),\
